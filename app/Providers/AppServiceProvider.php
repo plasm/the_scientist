@@ -22,9 +22,21 @@ use App\Integration\Common\Query\CrudFacadeDefaultBuilder;
 use App\Service\EventHandler\EventDispatcher as DefaultEventDispatcher;
 use Illuminate\Log\Logger;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
+    /**
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        //
+        Schema::defaultStringLength(191);
+    }
+
     public function register()
     {
         $this->app->bind(AcademicRepository::class, function (): AcademicQueryBuilderRepository {
